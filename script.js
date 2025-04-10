@@ -3,18 +3,18 @@ const GOOGLE_API_KEY = "AIzaSyD2uZxdn2hL6Mocy-iPrn7b9zwSe8JE1SI";
 const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GOOGLE_API_KEY}`;
 
 // Tambahkan variabel ini di dekat variabel global lainnya
-const botName = "Rexx";
+const botName = "AcongBot";
 const userName = "Tuan";
 let customInstructions = "Jawab dengan santai, gunakan emot, dan berikan jawaban singkat.";
 
 // Tambahkan ini di dekat variabel global lainnya (setelah let customInstructions)
 const programmedResponses = {
-  "siapa namamu": "Saya adalah Rexx AI, asisten virtual yang siap membantu!",
+  "siapa namamu": "Saya adalah AcongBot, asisten virtual yang siap membantu!",
   "siapa kamu": "Saya AcongBot, asisten AI yang siap membantu kebutuhan Anda.",
-  "siapa pengembangmu": "Saya dikembangkan oleh Acong, seorang programmer Indonesia yang berfokus pada teknologi AI lokal.",
+  "siapa pengembangmu": "Saya dikembangkan oleh Mas Amba, seorang programmer Indonesia yang berfokus pada teknologi AI lokal.",
   "Buat gambar": "Maaf, saya tidak dapat membuat gambar secara langsung karena saya adalah asisten berbasis teks. Namun, saya dapat membantu Anda dengan ide, konsep, atau deskripsi yang rinci untuk gambar yang ingin Anda buat. Jika Anda memiliki ide tertentu untuk gambar, beri tahu saya! Saya akan membantu memberikan detailnya. 😊 ",
-  "siapa developermu": "Developer saya adalah Acong yang fokus pada pengembangan AI di Indonesia",
-  "siapa nama pengembangmu": "Saya dikembangkan oleh Acong, seorang programmer Indonesia yang fokus pada AI."
+  "siapa developermu": "Developer saya adalah Mas Amba yang fokus pada pengembangan AI di Indonesia",
+  "siapa nama pengembangmu": "Saya dikembangkan oleh Mas Amba, seorang programmer Indonesia yang fokus pada AI."
 };
 // Tambahkan preset instruksi
 const instructionPresets = {
