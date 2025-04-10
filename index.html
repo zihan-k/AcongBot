@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="logo.png">
+  <title>AcongBot</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+</head>
+<body>
+  <button class="menu-button" onclick="toggleSidebar()">≡</button>
+  <div class="sidebar" id="sidebar">
+    <button onclick="newChat()"><i class="fas fa-plus"></i> ㅤObrolan Baru</button>
+    <button onclick="clearChat()" style="color: red;"><i class="fas fa-trash"></i> ㅤHapus Semua Obrolan</button>
+    <button onclick="copyAllBotMessages()" class="copy-all-button"><i class="fas fa-copy"></i> ㅤSalin Semua Pesan</button>
+    <button onclick="updateCustomInstructions()"><i class="fas fa-cog"></i> ㅤAtur Instruksi AI</button>
+    <button onclick="selectInstructionPreset()"><i class="fas fa-list"></i> ㅤPilih Preset</button>
+    <button onclick="manageProgrammedResponses()"><i class="fas fa-robot"></i> ㅤAtur Respons AI</button>
+    <button onclick="openSettings()"><i class="fas fa-gear"></i> ㅤPengaturan</button>
+    <h3>Riwayat Chat:</h3>
+    <div id="historyList"></div>
+    <div class="watermark">
+      
+      <a href="profile.html">About Developer <i class="fa-solid fa-up-right-from-square"></i></a>
+      <h3>AcongBot Versi: 0.1.0 (Beta)</h3>
+      </div>
+</div>
+
+  <div id="overlay" class="overlay"></div>
+    <!-- Menu fitur sekarang dipindahkan ke tengah layar -->
+    <div class="main">
+  <div class="header">
+    <button class="menu-button" onclick="toggleSidebar()">≡</button>
+    <div class="header-title">Obrolan baru</div>
+    <button class="new-chat-button" onclick="newChat()">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  
+  <!-- Area kosong dengan judul -->
+  <div id="emptyState" class="empty-state">
+    <div class="empty-state-text">
+      <h1>Apa yang bisa saya bantu?</h1>
+      <p>Mulai percakapan baru dengan AcongBot.</p>
+    </div>
+    <button class="start-chat-button" onclick="document.getElementById('userInput').focus()">
+      <i class="fas fa-comment"></i> Mulai Chat
+    </button>
+  </div>
+    <div class="features" id="featuresMenu">
+      <button onclick="setPrompt('Buat gambar tentang pemandangan alam.')"> <i class="fas fa-image"></i> ㅤBuat gambar</button>
+      <button onclick="setPrompt('Rangkum teks berikut: ')"><i class="fas fa-file-alt"></i> ㅤRangkum teks</button>
+      <button onclick="setPrompt('Tulis kode program untuk: ')"><i class="fas fa-code"></i> ㅤTulis kode</button>
+      <button onclick="setPrompt('Analisis data berikut: ')"><i class="fas fa-database"></i> ㅤAnalisis data</button>
+      <button onclick="setPrompt('Saya butuh bantuan untuk: ')" class="circle-ellipsis"><i class="fas fa-list"></i> ㅤLainnya</button>
+    </div>
+
+    <!-- Tambahkan tombol untuk menampilkan/menyembunyikan menu fitur -->
+    <button class="show-features-button" id="showFeaturesBtn" onclick="toggleFeatures()">
+      <i class="fas fa-th"></i>
+    </button>
+
+    <div class="chat-history" id="chatBox"></div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Tanyakan apa saja">
+      <button id="sendButton" onclick="sendMessage()"> 
+      <span class="material-icons">send</span></button>
+    </div>
+  </div>
+<!-- Modal Pengaturan -->
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Pengaturan</h2>
+      <span class="close-modal" onclick="closeSettings()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <!-- Tab Navigasi -->
+      <div class="settings-tabs">
+        <button class="tab-button active" onclick="openTab(event, 'appearanceTab')">Tampilan</button>
+        <button class="tab-button" onclick="openTab(event, 'aboutTab')">Tentang</button>
+        <button class="tab-button" onclick="openTab(event, 'reportTab')">Laporkan Bug</button>
+      </div>
+      
+      <!-- Tab Konten -->
+      <div id="appearanceTab" class="tab-content active">
+        <div class="setting-item">
+          <span>Mode Terang</span>
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <span>Ukuran Font</span>
+          <select id="fontSizeSelect" onchange="changeFontSize()">
+            <option value="12px">Kecil</option>
+            <option value="14px" selected>Sedang</option>
+            <option value="18px">Besar</option>
+          </select>
+        </div>
+        <div class="setting-item">
+  <span>Bahasa</span>
+  <select id="languageSelect" onchange="changeLanguage()">
+    <option value="id" selected>Indonesia</option>
+    <option value="en">English</option>
+  </select>
+      </div>
+      </div>
+      
+      <div id="aboutTab" class="tab-content">
+        <h3>Tentang AcongBot</h3>
+        <p>Masih Beta bg, wajar kalau banyak bug. Fuck🖕</p>
+        <p>Dikembangkan oleh: Mas Amba</p>
+        <p>Kontak: <a href="mailto:acong8709@gmail.com" class="link"><b>acong8709@gmail.com</b></a>.</p>
+      </div>
+      
+      <div id="reportTab" class="tab-content">
+        <h3>Laporkan Bug</h3>
+        <p>Temukan bug? Bantu saya memperbaikinya dengan melaporkannya di bawah ini:</p>
+        <textarea id="bugReport" placeholder="Jelaskan bug yang kamu temukan..." rows="5"></textarea>
+        <button onclick="submitBugReport()" class="report-button">Kirim Laporan</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>

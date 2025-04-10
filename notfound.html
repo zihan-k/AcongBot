@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            z-index: 1;
+            max-width: 90%;
+            width: 100%;
+        }
+        
+        .error-code {
+            font-size: 9rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            background: linear-gradient(45deg, #f72585, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .error-text {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #4cc9f0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .home-button {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(76, 201, 240, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 201, 240, 0.5);
+        }
+        
+        .robot-container {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            margin: 20px auto;
+        }
+
+        .robot {
+            position: absolute;
+            width: 150px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .robot-head {
+            position: absolute;
+            width: 80px;
+            height: 70px;
+            background: #4cc9f0;
+            border-radius: 10px;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: headBob 2s infinite;
+            z-index: 10;
+        }
+        
+        .robot-eye {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 20px;
+        }
+        
+        .robot-eye.left {
+            left: 15px;
+            animation: blinkLeft 4s infinite;
+        }
+        
+        .robot-eye.right {
+            right: 15px;
+            animation: blinkRight 4s infinite 0.5s;
+        }
+        
+        .robot-mouth {
+            position: absolute;
+            width: 30px;
+            height: 5px;
+            background: #1a1a2e;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        
+        .robot-body {
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            background: #4361ee;
+            border-radius: 15px;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .robot-panel {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background: #f72585;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .robot-light {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffff00;
+            border-radius: 50%;
+            top: 10px;
+        }
+        
+        .robot-light.one {
+            left: 10px;
+            animation: blink 1s infinite;
+        }
+        
+        .robot-light.two {
+            left: 25px;
+            animation: blink 1s infinite 0.3s;
+        }
+        
+        .robot-light.three {
+            left: 40px;
+            animation: blink 1s infinite 0.6s;
+        }
+        
+        .robot-arm {
+            position: absolute;
+            width: 20px;
+            height: 70px;
+            background: #4cc9f0;
+            border-radius: 10px;
+            top: 130px;
+            z-index: 10;
+        }
+        
+        .robot-arm.left {
+            left: 5px;
+            transform-origin: top center;
+            animation: fixLeft 2s infinite;
+        }
+        
+        .robot-arm.right {
+            right: 5px;
+            transform-origin: top center;
+            animation: fixRight 2s infinite 0.5s;
+        }
+        
+        .robot-tool {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            bottom: -10px;
+            left: 50%;
+        }
+        
+        .robot-tool.left {
+            transform: translateX(-50%) rotate(45deg);
+            background: #f72585;
+            border-radius: 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+        
+        .robot-tool.right {
+            background: #f72585;
+            border-radius: 50% 50% 0 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+        
+        .tool-shine {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+            animation: shine 2s infinite;
+        }
+        
+        .screws {
+            position: absolute;
+            width: 60px;
+            height: 15px;
+            bottom: -30px;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .screw {
+            width: 10px;
+            height: 10px;
+            background: #777;
+            border-radius: 50%;
+            border: 2px solid #999;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .screw:after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background: #444;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .screw:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 6px;
+            background: #444;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .sparks {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 0, 0.8);
+            opacity: 0;
+        }
+        
+        .spark:nth-child(1) {
+            animation: sparkAnim 1s infinite 0.1s;
+            transform: translate(5px, 10px);
+        }
+        
+        .spark:nth-child(2) {
+            animation: sparkAnim 1s infinite 0.3s;
+            transform: translate(-10px, 5px);
+        }
+        
+        .spark:nth-child(3) {
+            animation: sparkAnim 1s infinite 0.5s;
+            transform: translate(3px, 5px);
+        }
+        
+        .spark:nth-child(4) {
+            animation: sparkAnim 1s infinite 0.7s;
+            transform: translate(-5px, 12px);
+        }
+        
+        .spark:nth-child(5) {
+            animation: sparkAnim 1s infinite 0.9s;
+            transform: translate(8px, 3px);
+        }
+        
+        .code-container {
+            position: absolute;
+            width: 240px;
+            height: 160px;
+            top: -80px;
+            right: -120px;
+            transform: rotate(-15deg);
+            perspective: 500px;
+            z-index: 1;
+        }
+        
+        .code-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(19, 19, 31, 0.8);
+            border-radius: 10px;
+            border: 2px solid #4cc9f0;
+            transform: rotateY(15deg);
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
+        }
+        
+        .computer-parts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .motherboard {
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            background: #2a2a42;
+            border-radius: 5px;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            z-index: 5;
+        }
+        
+        .chip {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #333;
+            border-radius: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #555;
+        }
+        
+        .chip:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            background: linear-gradient(45deg, #444, #222);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .circuit {
+            position: absolute;
+            height: 2px;
+            background: goldenrod;
+        }
+        
+        .circuit:nth-child(1) {
+            width: 20px;
+            top: 15px;
+            left: 10px;
+        }
+        
+        .circuit:nth-child(2) {
+            width: 15px;
+            top: 25px;
+            right: 10px;
+        }
+        
+        .circuit:nth-child(3) {
+            width: 30px;
+            bottom: 20px;
+            left: 20px;
+        }
+        
+        .circuit:nth-child(4) {
+            width: 25px;
+            bottom: 10px;
+            right: 15px;
+        }
+        
+        .code-line {
+            position: absolute;
+            height: 10px;
+            background: #4cc9f0;
+            opacity: 0.7;
+            border-radius: 10px;
+            animation: codeLine 3s infinite;
+        }
+        
+        .code-line:nth-child(1) {
+            width: 60%;
+            top: 20px;
+            left: 10px;
+            animation-delay: 0.2s;
+        }
+        
+        .code-line:nth-child(2) {
+            width: 40%;
+            top: 40px;
+            left: 30px;
+            animation-delay: 0.4s;
+        }
+        
+        .code-line:nth-child(3) {
+            width: 70%;
+            top: 60px;
+            left: 15px;
+            animation-delay: 0.6s;
+        }
+        
+        .code-line:nth-child(4) {
+            width: 50%;
+            top: 80px;
+            left: 25px;
+            animation-delay: 0.8s;
+        }
+        
+        .code-line:nth-child(5) {
+            width: 65%;
+            top: 100px;
+            left: 10px;
+            animation-delay: 1s;
+        }
+        
+        .code-line:nth-child(6) {
+            width: 45%;
+            top: 120px;
+            left: 30px;
+            animation-delay: 1.2s;
+        }
+        
+        .gear {
+            position: absolute;
+            border-radius: 50%;
+            background: #4361ee;
+            box-shadow: 0 0 10px rgba(67, 97, 238, 0.7);
+            animation: rotate 10s linear infinite;
+        }
+        
+        .gear.one {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 10%;
+            animation-duration: 20s;
+        }
+        
+        .gear.two {
+            width: 40px;
+            height: 40px;
+            bottom: 20%;
+            left: 10%;
+            animation-duration: 15s;
+            animation-direction: reverse;
+        }
+        
+        .gear.three {
+            width: 70px;
+            height: 70px;
+            bottom: 30%;
+            right: 15%;
+            animation-duration: 25s;
+        }
+        
+        .gear:before {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            background: #1a1a2e;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .gear:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: transparent;
+            border-radius: 50%;
+            background-image: 
+                radial-gradient(circle at 30% 30%, transparent 30%, #1a1a2e 30%, #1a1a2e 35%, transparent 35%),
+                radial-gradient(circle at 70% 30%, transparent 30%, #1a1a2e 30%, #1a1a2e 35%, transparent 35%),
+                radial-gradient(circle at 30% 70%, transparent 30%, #1a1a2e 30%, #1a1a2e 35%, transparent 35%),
+                radial-gradient(circle at 70% 70%, transparent 30%, #1a1a2e 30%, #1a1a2e 35%, transparent 35%),
+                radial-gradient(circle at 50% 50%, transparent 35%, #1a1a2e 35%, #1a1a2e 40%, transparent 40%);
+        }
+        
+        .circuit-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #4cc9f0, transparent);
+            height: 2px;
+        }
+        
+        .circuit-line:nth-child(1) {
+            width: 50%;
+            top: 20%;
+            left: 0;
+            animation: circuitFlow 4s linear infinite;
+        }
+        
+        .circuit-line:nth-child(2) {
+            width: 70%;
+            top: 40%;
+            right: 0;
+            animation: circuitFlow 5s linear infinite;
+        }
+        
+        .circuit-line:nth-child(3) {
+            width: 60%;
+            bottom: 30%;
+            left: 10%;
+            animation: circuitFlow 6s linear infinite;
+        }
+        
+        .circuit-line:nth-child(4) {
+            width: 40%;
+            bottom: 10%;
+            right: 10%;
+            animation: circuitFlow 3s linear infinite;
+        }
+        
+        .circuit-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #4cc9f0;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4cc9f0;
+        }
+        
+        .circuit-dot:nth-child(5) {
+            top: 20%;
+            left: 50%;
+            animation: pulseDot 2s infinite;
+        }
+        
+        .circuit-dot:nth-child(6) {
+            top: 40%;
+            right: 30%;
+            animation: pulseDot 2s infinite 0.5s;
+        }
+        
+        .circuit-dot:nth-child(7) {
+            bottom: 30%;
+            left: 70%;
+            animation: pulseDot 2s infinite 1s;
+        }
+        
+        .circuit-dot:nth-child(8) {
+            bottom: 10%;
+            left: 10%;
+            animation: pulseDot 2s infinite 1.5s;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes headBob {
+            0%, 100% {
+                transform: translateX(-50%);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        @keyframes blinkLeft {
+            0%, 95%, 100% {
+                height: 20px;
+                top: 20px;
+            }
+            97.5% {
+                height: 2px;
+                top: 29px;
+            }
+        }
+        
+        @keyframes blinkRight {
+            0%, 95%, 100% {
+                height: 20px;
+                top: 20px;
+            }
+            97.5% {
+                height: 2px;
+                top: 29px;
+            }
+        }
+        
+        @keyframes fixLeft {
+            0%, 100% {
+                transform: rotate(-20deg);
+            }
+            50% {
+                transform: rotate(-40deg);
+            }
+        }
+        
+        @keyframes fixRight {
+            0%, 100% {
+                transform: rotate(20deg);
+            }
+            50% {
+                transform: rotate(40deg);
+            }
+        }
+        
+        @keyframes shine {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes sparkAnim {
+            0% {
+                opacity: 0;
+                transform: translate(var(--x, 0), var(--y, 0)) scale(0.5);
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(var(--x, 0) + 15px), calc(var(--y, 0) - 20px)) scale(0);
+            }
+        }
+        
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 10px #ffff00;
+            }
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 5px #ffff00;
+            }
+        }
+        
+        @keyframes codeLine {
+            0% {
+                background: #4361ee;
+                opacity: 0.4;
+            }
+            50% {
+                background: #4cc9f0;
+                opacity: 0.8;
+            }
+            100% {
+                background: #4361ee;
+                opacity: 0.4;
+            }
+        }
+        
+        @keyframes circuitFlow {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-text {
+                font-size: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .robot-container {
+                width: 250px;
+                height: 300px;
+                transform: scale(0.8);
+                margin-top: 40px;
+            }
+            
+            .code-container {
+                transform: rotate(-15deg) scale(0.8);
+                top: -60px;
+                right: -100px;
+            }
+            
+            
+            .motherboard {
+                bottom: -40px;
+            }
+            
+            .gear.one {
+                top: 10%;
+                right: 5%;
+            }
+            
+            .gear.two {
+                bottom: 10%;
+                left: 5%;
+            }
+            
+            .gear.three {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .error-code {
+                font-size: 4rem;
+            }
+            
+            .error-text {
+                font-size: 1.2rem;
+            }
+            
+            .description {
+                font-size: 0.9rem;
+            }
+            
+            .robot-container {
+                width: 200px;
+                height: 250px;
+                transform: scale(0.7);
+                margin-top: 30px;
+            }
+            
+            .code-container {
+                width: 180px;
+                height: 120px;
+                transform: rotate(-15deg) scale(0.7);
+                top: -50px;
+                right: -80px;
+            }
+            
+            .motherboard {
+                width: 80px;
+                height: 60px;
+                bottom: -30px;
+            }
+            
+            .gear.one, .gear.two {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        
+        .description {
+          color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="circuit-lines">
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-dot"></div>
+        <div class="circuit-dot"></div>
+        <div class="circuit-dot"></div>
+        <div class="circuit-dot"></div>
+    </div>
+    
+    <div class="gear one"></div>
+    <div class="gear two"></div>
+    <div class="gear three"></div>
+    
+    <div class="container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-text">Halaman Tidak Ditemukan</h2>
+        <p class="description">Maaf, halaman yang Anda cari tidak dapat ditemukan atau telah dihapus. Mungkin URL yang Anda masukkan salah atau halaman tersebut tidak lagi tersedia.</p>
+        <a href="index.html" class="home-button">Kembali ke Beranda →</a>
+    </div>
+    
+    <div class="robot-container">
+        <div class="code-container">
+            <div class="code-screen">
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+                <div class="code-line"></div>
+            </div>
+        </div>
+        
+        <div class="robot">
+            <div class="robot-head">
+                <div class="robot-eye left"></div>
+                <div class="robot-eye right"></div>
+                <div class="robot-mouth"></div>
+            </div>
+            <div class="robot-body">
+                <div class="robot-panel">
+                    <div class="robot-light one"></div>
+                    <div class="robot-light two"></div>
+                    <div class="robot-light three"></div>
+                </div>
+            </div>
+            <div class="robot-arm left">
+                <div class="robot-tool left">
+                    <div class="tool-shine"></div>
+                </div>
+                <div class="sparks">
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                </div>
+            </div>
+            <div class="robot-arm right">
+                <div class="robot-tool right">
+                    <div class="tool-shine"></div>
+                </div>
+            </div>
+            
+            <div class="computer-parts">
+                <div class="motherboard">
+                    <div class="chip"></div>
+                    <div class="circuit"></div>
+                    <div class="circuit"></div>
+                    <div class="circuit"></div>
+                    <div class="circuit"></div>
+                </div>
+                <div class="screws">
+                    <div class="screw"></div>
+                    <div class="screw"></div>
+                    <div class="screw"></div>
+                    <div class="screw"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    
