@@ -14,7 +14,9 @@ const programmedResponses = {
   "siapa pengembangmu": "Saya dikembangkan oleh Mas Amba, seorang programmer Indonesia yang berfokus pada teknologi AI lokal.",
   "Buat gambar": "Maaf, saya tidak dapat membuat gambar secara langsung karena saya adalah asisten berbasis teks. Namun, saya dapat membantu Anda dengan ide, konsep, atau deskripsi yang rinci untuk gambar yang ingin Anda buat. Jika Anda memiliki ide tertentu untuk gambar, beri tahu saya! Saya akan membantu memberikan detailnya. 😊 ",
   "siapa developermu": "Developer saya adalah Mas Amba yang fokus pada pengembangan AI di Indonesia",
-  "siapa nama pengembangmu": "Saya dikembangkan oleh Mas Amba, seorang programmer Indonesia yang fokus pada AI."
+  "siapa nama pengembangmu": "Saya dikembangkan oleh Mas Amba, seorang programmer Indonesia yang fokus pada AI.",
+   "siapa yang mengembangkanmu": "Tuan, saya AcongBot dikembangkan oleh Mas Amba.",
+   "siapa yang membuatmu": "Tuan, saya AcongBot dibuat dan dikembangkan oleh Mas Amba."
 };
 // Tambahkan preset instruksi
 const instructionPresets = {
