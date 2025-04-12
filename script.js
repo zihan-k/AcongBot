@@ -52,7 +52,7 @@ const translations = {
     "other": "Lainnya",
     "uploadImage": "Unggah Gambar",
     "uploadFile": "Unggah File",
-    "version": "AcongBot Versi: 0.1.0 (Beta)",
+    "version": "AcongBot Versi: 0.1.2 (Beta)",
     
     // Input placeholder
     "askAnything": "Tanyakan apa saja",
@@ -100,7 +100,7 @@ const translations = {
     "other": "Others",
     "uploadImage": "Upload Image",
     "uploadFile": "Upload File",
-    "version": "AcongBot Version: 0.1.0 (Beta)",
+    "version": "AcongBot Version: 0.1.2 (Beta)",
     
     // Input placeholder
     "askAnything": "Ask anything",
